@@ -19,6 +19,10 @@
 #ifndef _LINUX_IN_H
 #define _LINUX_IN_H
 
+#ifdef NDK_BUILD
+#include <bits/in_addr.h>
+#endif
+
 #include <linux/types.h>
 #include <linux/libc-compat.h>
 #include <linux/socket.h>
@@ -81,10 +85,12 @@ enum {
 #endif
 
 #if __UAPI_DEF_IN_ADDR
+#ifndef NDK_BUILD
 /* Internet address. */
 struct in_addr {
 	__be32	s_addr;
 };
+#endif
 #endif
 
 #define IP_TOS		1
